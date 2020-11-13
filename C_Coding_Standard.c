@@ -1,53 +1,45 @@
+#include <stdio.h>
 #include<stdlib.h>
-#include<stdio.h>
-#include<stddef.h>
-#include <complex.h>
-#include <math.h>
+#include <assert.h>
+int magic(int size, int *Ptr);
 
-
-/******************************************************************************
-PRE31-C. Avoid side effects in arguments to unsafe macros
-******************************************************************************/
-
-/******************************************************************************
-Noncompliant Code Example
-******************************************************************************/
-//#define abs(x) (((x) < 0) ? -(x) : (x))
+//int main(void) {
+//	/*int a = 4;
+//	int * Ptr = &a;*/
+//	//magic(10, Ptr);
+//	magic(40, NULL);
+//	puts("done");
+//	return 0;
+//}
+//int magic(int size, int *Ptr)
+//{
+//	/**
+//	 * Assert checks if a certain condition is true, if that condition is not true,
+//	 * the program terminates with the error of the assert failing.  This is very helpful for
+//	 * testing and a good coding practice in C to put them anywhere you could get a NULL or
+//	 * number out of range.
+//	 *
+//	 */
+//	assert(Ptr != (NULL));
+//	assert(size >= 30);
 //
-//int main(int n) {
-//	/* validate that n is within the desired range */
-//	int m = abs(++n);
-//	printf("m=%d \n", m);
+//	return 1;
 //
-//	return EXIT_SUCCESS;
 //}
 
-/******************************************************************************
-compliant Code Example
-******************************************************************************/
-//#define ABS(x) (((x) < 0) ? -(x) : (x)) /* UNSAFE */
-//
-//int main(int n) {
-//	/* Validate that n is within the desired range */
-//	++n;
-//	int m = ABS(n);
-//	printf("m=%d \n", m);
-//	return EXIT_SUCCESS;
-//}
+int main(void) {
+		int a = 4;
+		int * Ptr = &a;
+		magic(10, Ptr);		
+		puts("done");
+		return 0;
+	}
+	int magic(int size, int *Ptr)
+	{
 
-/******************************************************************************
-compliant Code Example
-******************************************************************************/
-static inline int iabs(int x) {
+		assert(Ptr != (NULL));
+		assert(size >= 30);
 	
-	return (((x) < 0) ? -(x) : (x));
-}
-
-int main(int n) {
-	/* Validate that n is within the desired range */
+		return 1;
 	
-	int m = iabs(++n);
-	printf("m=%d \n", m);
-
-	return EXIT_SUCCESS;
-}
+	}
